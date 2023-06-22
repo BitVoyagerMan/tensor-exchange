@@ -1,5 +1,6 @@
 import Layout from "src/components/Layout"
 import { Chart } from "src/components/Chart"
+import { Table } from "src/components/Table"
 export default function MainPage(){
   // const initialData = [
   //   { time: '2018-12-22', value: 32.51 },
@@ -28,8 +29,16 @@ export default function MainPage(){
   return (
       <Layout title = "Home">
         <h1 className="mb-[8px]"></h1>
-        <div className="container xl:max-w-[1320px] lg:max-w-[1140] h-100 overflow-hidden relative">
-          <Chart className = "absolute w-100" candleData = {candleInitialData} />  
+        <div className="container  xl:max-w-[1140px] xxl:max-w-[1320px] lg:max-w-[1140] h-100 overflow-hidden">
+          <Chart className = "w-100" candleData = {candleInitialData} />  
+          <div className="flex flex-row">
+            <Table title = "Sell Orders" order_type="Buy Tao" ></Table>
+            <Table title = "Buy Orders" order_type="Sell Tao"></Table>
+          </div>
+          <div className="flex justify-center items-center box-border p-[5px]">
+            <input type="checkbox" checked className="ml-[-1.5em] pl-[1.5em] w-[1em] h-[1em] rounded-md focus:outline-none border-[#86b7fe] focus:shadow-[0_0_0_.25rem_rgba(13,110,253,.25)] "/>
+            <label className="text-[1rem] font-normal ml-[15px]">Auto Refresh</label>
+          </div>
         </div>
       </Layout>
   )

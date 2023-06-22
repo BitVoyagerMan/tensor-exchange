@@ -1,7 +1,7 @@
 export default function(){
     return(
         <div className=" bg-gradient-to-t from-[#212529]  p-[16px]  to-[#414548]">
-            <div className="container mx-auto xl:max-w-[1320px]">
+            <div className="container mx-auto xl:max-w-[1140px] xxl:max-w-[1320px]">
                 <div className = " flex flex-wrap justify-center lg:justify-start items-center p-[5px]   mx-auto  text-white font-normal text-[1.25rem] leading-6 box-border">
                 
                     <div className = "flex flex-row  mr-[1.0rem] items-center py-[0.3125rem]">

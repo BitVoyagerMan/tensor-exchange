@@ -9,17 +9,17 @@ export default function Signup(){
                 <div className="flex flex-col mt-[5px] text-[1rem]">
                     <div className="flex flex-col flex-auto p-[5px] text-[#212529]">
                         <span className="ml-[6px]">Username</span>
-                        <input type="text" m-auto className="flex-auto m-[6px] focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
+                        <input type="text" m-auto="true" className="flex-auto m-[6px] focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
                     
                     </div>
                     <div className="flex flex-col flex-auto p-[5px] text-[#212529]">
                         <span className="ml-[6px]" >Email</span>
-                        <input type="text"  m-auto className="flex-auto m-[6px] focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
+                        <input type="text"  m-auto="true" className="flex-auto m-[6px] focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
                     
                     </div>
                     <div className="flex flex-col flex-auto p-[5px] text-[#212529]">
                         <span className="ml-[6px]" >Password</span>
-                        <input type="password"  m-auto className="flex-auto m-[6px] focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
+                        <input type="password"  m-auto="true" className="flex-auto m-[6px] focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
                     
                     </div>
                     <div className="flex flex-row p-[5px] text-[#212529] items-center">

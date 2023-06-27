@@ -8,11 +8,11 @@ export default function Login(){
                 <h1 className="mb-[8px] text-[2.5rem] font-medium">Login</h1>
                 <div className="flex flex-auto flex-row mt-[16px]">
                     <div className="flex flex-auto p-[10px] w-[30%]">
-                        <input type="text" placeholder="Username" m-auto className="flex-auto focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
+                        <input type="text" placeholder="Username" m-auto="true" className="flex-auto focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
                     
                     </div>
                     <div className="flex flex-auto p-[10px] w-[30%]">
-                        <input type="password" placeholder="Password" m-auto className="flex-auto focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
+                        <input type="password" placeholder="Password" m-auto="true" className="flex-auto focus:outline-none border-[1px] rounded-[0.25rem] py-[0.375rem] px-[0.75rem] focus:border-[#86b7fe] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]"></input>
 
                     </div>
                     <div className="flex flex-auto p-[10px] w-[30%]">

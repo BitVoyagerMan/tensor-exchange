@@ -1,5 +1,61 @@
 import Link from "next/link"
-export default function(){
+import { useEffect, useState } from "react"
+import { ApolloClient, HttpLink, InMemoryCache, gql } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { useQuery, useMutation } from "@apollo/client";
+import {GET_USER_MUTATION} from '../../../graphql/mutations';
+export default function () {
+
+    const [signFlag, setSignFlag] = useState(false);
+
+    const [get_user_mutation, {error, data} ] = useMutation(GET_USER_MUTATION);
+    async function getUserInfo(){
+        const { data } = await get_user_mutation({
+            variables: {
+            userId:72,
+            }
+          })
+        return data;
+    }
+    function signOut(){
+        localStorage.setItem('token', null);
+        localStorage.setItem('expiresAt', null);
+        localStorage.setItem('signupPending', null);
+        setSignFlag(false);
+    }
+    useEffect(() => {
+        const expiresAt:String = localStorage.getItem('expiresAt');
+        const token:String = localStorage.getItem('token');
+        if(expiresAt && token){
+            console.log(expiresAt, Date.now())
+            if(Number(expiresAt) > Date.now()){
+                setSignFlag(true);
+            }
+        }
+        // try{
+        //     const data =  getUserInfo()
+        //     console.log(data)
+        // }
+        // catch(e){
+
+        // }
+        // client.mutate({
+        //     mutation: gql `
+        //             mutation{
+        //                 currentUser(userId:)
+        //                 {
+        //                     id
+        //                     username
+        //                     email
+        //                 }
+        //             }`
+        // })
+        // .then(data => {
+        //     console.log(data)
+        //     // localStorage.setItem('token', data)
+        // })
+        // .catch(error => console.error(error));
+    })
     return(
         <div className=" bg-gradient-to-t from-[#212529]  p-[16px]  to-[#414548]">
             <div className="container mx-auto xl:max-w-[1140px] xxl:max-w-[1320px]">
@@ -26,9 +82,16 @@ export default function(){
                     </ul>
                 
                     <div className="flex flex-row text-[16px]">
-                        <Link href = "/login" className=" focus:shadow-[0_0_0_0.25rem_rgba(248,249,250,.5)] text-white hover:bg-white hover:text-black me-2 border-[1px] py-[6px] px-[12px] rounded-[4px]">Login</Link>
-                        <Link href = "/signup" className=" focus:shadow-[0_0_0_0.25rem_rgba(217,164,6,.5)] bg-[#ffc107] border-[#ffc107] hover:bg-[#ffcd39] hover:border-[#ffc720]  border-[1px] py-[6px] px-[12px] rounded-[4px] text-black">Sign-up</Link>
+                        {signFlag == true?<img onClick={() => signOut()} className="w-10 h-10 rounded-full" src="avatar.png" alt="Rounded avatar"/>:
+                            ""
+                        }
+
+                        {/* <img className="w-10 h-10 rounded-full" src="avatar.png" alt="Rounded avatar"/> */}
+                        {signFlag == false?<Link href = "/login" className=" focus:shadow-[0_0_0_0.25rem_rgba(248,249,250,.5)] text-white hover:bg-white hover:text-black me-2 border-[1px] py-[6px] px-[12px] rounded-[4px]">Login</Link>:""}
+                        {signFlag == false?<Link href = "/signup" className=" focus:shadow-[0_0_0_0.25rem_rgba(217,164,6,.5)] bg-[#ffc107] border-[#ffc107] hover:bg-[#ffcd39] hover:border-[#ffc720]  border-[1px] py-[6px] px-[12px] rounded-[4px] text-black">Sign-up</Link>:""}
+                        
                     </div>
+
                 </div>
             </div>
         </div>

@@ -21,10 +21,13 @@ export default function Pending(){
     })
     return (
         <Layout title = "Login">
-            Please check your mailbox. We sent email for verification.        
+            <div className = "flex flex-col m-4 align-middle items-center">
+            <div className="flex text-[36px] m-4">Please check your mailbox. We sent email for verification. </div>       
             <button  className=" py-[6px] flex items-center justify-items-center focus:outline-none   border-[1px] bg-[#198754] border-[#198754] px-[12px] rounded-[0.25rem] focus:border[#0a58ca] text-white focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,.25)]">
                             Resend Email
             </button>
+            </div>
+            
         </Layout>
     )
 }

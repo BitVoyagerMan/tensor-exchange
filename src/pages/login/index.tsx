@@ -5,13 +5,18 @@ import { useEffect, useReducer, useState } from "react"
 import { useQuery, useMutation } from "@apollo/client";
 import Layout from "src/components/Layout"
 import {LOGIN_MUTATION} from '../../graphql/mutations';
+import { AppDispatch } from "src/redux/store";
+import { useDispatch } from "react-redux";
 import 'moment';
+
+import { logIn, logOut } from "src/redux/features/auth-slice";
 export default function Login(){
     const router = useRouter();
     useEffect(() => {
         //Check expiresAt
         
     })
+    const dispatch = useDispatch<AppDispatch>();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [login_mutation, {error, data} ] = useMutation(LOGIN_MUTATION);
@@ -32,7 +37,7 @@ export default function Login(){
         const timeNow = Date.now();
         const expiresAt = timeNow + 3600 * 1000
         localStorage.setItem('expiresAt', expiresAt.toString());
-        console.log("timenow", new Date(expiresAt));
+        dispatch(logIn(username));
         router.replace('/')
         
 

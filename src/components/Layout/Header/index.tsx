@@ -1,13 +1,20 @@
+"use client";
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { ApolloClient, HttpLink, InMemoryCache, gql } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { useQuery, useMutation } from "@apollo/client";
 import {GET_USER_MUTATION} from '../../../graphql/mutations';
+import { useSelector } from "react-redux";
+import { useAppSelector } from "src/redux/store";
+import { AppDispatch } from "src/redux/store";
+import { useDispatch } from "react-redux";
+import { logOut } from "src/redux/features/auth-slice";
+
 export default function () {
-
+    const dispatch = useDispatch<AppDispatch>();
     const [signFlag, setSignFlag] = useState(false);
-
+    const username = useAppSelector((state) => state.authReducer.value.username);
     const [get_user_mutation, {error, data} ] = useMutation(GET_USER_MUTATION);
     async function getUserInfo(){
         const { data } = await get_user_mutation({
@@ -21,6 +28,7 @@ export default function () {
         localStorage.setItem('token', null);
         localStorage.setItem('expiresAt', null);
         localStorage.setItem('signupPending', null);
+        dispatch(logOut());
         setSignFlag(false);
     }
     useEffect(() => {
@@ -32,29 +40,6 @@ export default function () {
                 setSignFlag(true);
             }
         }
-        // try{
-        //     const data =  getUserInfo()
-        //     console.log(data)
-        // }
-        // catch(e){
-
-        // }
-        // client.mutate({
-        //     mutation: gql `
-        //             mutation{
-        //                 currentUser(userId:)
-        //                 {
-        //                     id
-        //                     username
-        //                     email
-        //                 }
-        //             }`
-        // })
-        // .then(data => {
-        //     console.log(data)
-        //     // localStorage.setItem('token', data)
-        // })
-        // .catch(error => console.error(error));
     })
     return(
         <div className=" bg-gradient-to-t from-[#212529]  p-[16px]  to-[#414548]">
@@ -82,7 +67,9 @@ export default function () {
                     </ul>
                 
                     <div className="flex flex-row text-[16px]">
-                        {signFlag == true?<img onClick={() => signOut()} className="w-10 h-10 rounded-full" src="avatar.png" alt="Rounded avatar"/>:
+                        {signFlag == true?<div className="flex flex-row items-center"><img onClick={() => signOut()} className="w-10 h-10 rounded-full" src="avatar.png" alt="Rounded avatar"/>
+                            <span className="text-[17px]">{username}</span>
+                        </div>:
                             ""
                         }
 

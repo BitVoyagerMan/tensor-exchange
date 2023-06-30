@@ -12,6 +12,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import { onError } from '@apollo/client/link/error'
 import Auth from '../components/Auth'
+import { ReduxProvider } from 'src/redux/provider';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if(graphQLErrors) {
@@ -58,7 +59,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Head>
       <Auth>
         <ApolloProvider client={client}>
-          <Component {...pageProps} />
+          <ReduxProvider>
+            <Component {...pageProps} />
+          </ReduxProvider>
         </ApolloProvider>
       </Auth>
     </>
